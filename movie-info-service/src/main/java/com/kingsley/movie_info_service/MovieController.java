@@ -9,7 +9,7 @@ import java.util.List;
 public class MovieController {
     @GetMapping("/user/{id}/movies")
     public List<MovieEntity> getUserMovies(@PathVariable String id){
-        return List.of(new MovieEntity("DeadPool", "Marvel Animated Movie"), new MovieEntity("DeadPool 2", "Marvel Animated Movie"));
+        return List.of(new MovieEntity("2847t2rsbua9fhxbvafydgqjn","DeadPool", "Marvel Animated Movie"), new MovieEntity("cbavhsvcjkwv.cv hcqyv ycvxb nzbcvc cx", "DeadPool 2", "Marvel Animated Movie"));
     }
 
     @PostMapping("/user/{id}/movie/create")

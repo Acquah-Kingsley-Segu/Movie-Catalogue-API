@@ -8,22 +8,31 @@ public class MovieEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
+    @Column(nullable = false)
+    private String userId;
+
     @Column(nullable = false)
     private String name;
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    public MovieEntity(String name, String description) {
+    public MovieEntity(String userId, String name, String description) {
         this.name = name;
         this.description = description;
+        this.userId = userId;
     }
 
     public MovieEntity() {
 
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
