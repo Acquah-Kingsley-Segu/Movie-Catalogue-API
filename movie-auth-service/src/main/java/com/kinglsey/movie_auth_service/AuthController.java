@@ -1,5 +1,7 @@
 package com.kinglsey.movie_auth_service;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,7 +14,8 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public Object registerUser(@RequestBody UserDto registerData){
-        return authService.createUserAccount(registerData);
+    public ResponseEntity<AccountRegisterDto> registerUser(@RequestBody UserPayload registerData){
+        return ResponseEntity.status(HttpStatus.CREATED).body(authService.createUserAccount(registerData));
+
     }
 }

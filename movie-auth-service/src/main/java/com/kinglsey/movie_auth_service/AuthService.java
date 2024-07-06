@@ -13,8 +13,9 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Users createUserAccount(UserDto registerData) {
+    public AccountRegisterDto createUserAccount(UserPayload registerData) {
         Users newUser = new Users(registerData.username(), registerData.email(), passwordEncoder.encode(registerData.password()));
-        return userRepository.save(newUser);
+        newUser = userRepository.save(newUser);
+        return new AccountRegisterDto(newUser.getUsername(), newUser.getEmail());
     }
 }
