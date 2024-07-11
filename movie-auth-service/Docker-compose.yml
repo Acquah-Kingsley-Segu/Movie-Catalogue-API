@@ -1,0 +1,20 @@
+services:
+  movie-auth-image:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+
+  movie_app_users:
+    image: postgres:16.3-alpine3.20
+    volumes:
+      - movie_app_users:/etc/data
+    environment:
+      POSTGRES_PASSWORD: movie_app_users-password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: movie_app_users
+    ports:
+      - "5432:5432"
+
+volumes:
+  movie_app_users:
