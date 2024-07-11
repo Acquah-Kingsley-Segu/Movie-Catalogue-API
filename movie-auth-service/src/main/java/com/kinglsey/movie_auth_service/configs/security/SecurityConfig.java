@@ -8,9 +8,16 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class SecurityConfig {
+    private final MovieAuthenticationFilter movieAuthenticationFilter;
+
+    public SecurityConfig(MovieAuthenticationFilter movieAuthenticationFilter) {
+        this.movieAuthenticationFilter = movieAuthenticationFilter;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
@@ -19,6 +26,7 @@ public class SecurityConfig {
                     authorization.requestMatchers("/api/v1/movie-catalogue/auth/**").permitAll();
                     authorization.requestMatchers("/demo").authenticated();
                 })
+                .addFilterAt(movieAuthenticationFilter, BasicAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults());
         return httpSecurity.build();
     }
@@ -27,4 +35,5 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 }
