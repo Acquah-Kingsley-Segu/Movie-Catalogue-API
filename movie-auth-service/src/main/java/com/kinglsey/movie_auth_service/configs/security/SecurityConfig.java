@@ -23,8 +23,15 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorization -> {
-                    authorization.requestMatchers("/api/v1/movie-catalogue/auth/**").permitAll();
-                    authorization.requestMatchers("/demo").authenticated();
+                    authorization.requestMatchers(
+                            "/api/v1/movie-catalogue/auth/**",
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**",
+                            "/swagger-ui.html",
+                            "/webjars/**",
+                            "/swagger-resources/**"
+                    ).permitAll();
+                    authorization.anyRequest().authenticated();
                 })
                 .addFilterAt(movieAuthenticationFilter, BasicAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults());
