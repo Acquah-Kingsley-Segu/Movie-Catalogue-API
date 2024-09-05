@@ -16,6 +16,14 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<AccountRegisterDto> registerUser(@RequestBody UserPayload registerData){
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.createUserAccount(registerData));
+    }
 
+    @PostMapping("/login")
+    public ResponseEntity<Object> loginUser(@RequestBody AccountLoginPayload loginData){
+        var authenticatedUser = authService.authenticateUser(loginData);
+        if(authenticatedUser != null){
+            return ResponseEntity.ok(authenticatedUser);
+        }
+        return ResponseEntity.status(401).build();
     }
 }

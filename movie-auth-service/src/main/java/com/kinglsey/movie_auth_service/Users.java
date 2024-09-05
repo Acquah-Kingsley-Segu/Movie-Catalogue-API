@@ -1,8 +1,11 @@
 package com.kinglsey.movie_auth_service;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 @Entity
+@Component
 public class Users {
     public String getId() {
         return id;
