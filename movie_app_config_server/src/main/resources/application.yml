@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: movie-config-server
+
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Acquah-Kingsley-Segu/Movie-Catalogue-API
+          search-paths: service-configs
+  profiles:
+    active: dev
+server:
+  port: 8888
