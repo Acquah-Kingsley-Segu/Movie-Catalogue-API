@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: movie-auth-service
+  profiles:
+    active: dev
+#jwt.secret.key=${}
