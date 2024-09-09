@@ -3,4 +3,8 @@ spring:
     name: movie-auth-service
   profiles:
     active: dev
-#jwt.secret.key=${}
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    config:
+      enabled: true
