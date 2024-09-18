@@ -34,7 +34,8 @@ public class SecurityConfig {
                     authorization.anyRequest().authenticated();
                 })
                 .addFilterAt(movieAuthenticationFilter, BasicAuthenticationFilter.class)
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults())
+                .oauth2Login(Customizer.withDefaults());
         return httpSecurity.build();
     }
 
