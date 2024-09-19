@@ -21,6 +21,11 @@ public class OAuth2Controller {
         this.securityUserService = securityUserService;
     }
 
+    @GetMapping("/oauth/google")
+    public String initiateGoogleOAuth() {
+        return "redirect:http://localhost:9091/oauth2/authorization/google";
+    }
+
     @GetMapping("/oauth2/success")
     public AccountLoginDto demo(OAuth2AuthenticationToken authentication) {
         String username = authentication.getPrincipal().getAttribute("name");
