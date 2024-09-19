@@ -35,7 +35,7 @@ public class SecurityConfig {
                 })
                 .addFilterAt(movieAuthenticationFilter, BasicAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults())
-                .oauth2Login(Customizer.withDefaults());
+                .oauth2Login(oauth2 -> oauth2.defaultSuccessUrl("/oauth2/success", true));
         return httpSecurity.build();
     }
 
