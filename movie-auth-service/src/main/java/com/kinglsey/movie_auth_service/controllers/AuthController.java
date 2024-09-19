@@ -1,5 +1,9 @@
-package com.kinglsey.movie_auth_service;
+package com.kinglsey.movie_auth_service.controllers;
 
+import com.kinglsey.movie_auth_service.dtos.AccountLoginPayload;
+import com.kinglsey.movie_auth_service.dtos.AccountRegisterDto;
+import com.kinglsey.movie_auth_service.dtos.UserPayload;
+import com.kinglsey.movie_auth_service.services.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

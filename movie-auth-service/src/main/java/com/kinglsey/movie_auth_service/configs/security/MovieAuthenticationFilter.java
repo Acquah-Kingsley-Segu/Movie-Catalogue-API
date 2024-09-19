@@ -1,6 +1,6 @@
 package com.kinglsey.movie_auth_service.configs.security;
 
-import com.kinglsey.movie_auth_service.JwtService;
+import com.kinglsey.movie_auth_service.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,4 +1,4 @@
-package com.kinglsey.movie_auth_service;
+package com.kinglsey.movie_auth_service.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

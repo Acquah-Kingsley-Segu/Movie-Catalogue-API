@@ -1,6 +1,11 @@
-package com.kinglsey.movie_auth_service;
+package com.kinglsey.movie_auth_service.services;
 
+import com.kinglsey.movie_auth_service.*;
 import com.kinglsey.movie_auth_service.configs.security.SecurityUserService;
+import com.kinglsey.movie_auth_service.dtos.AccountLoginDto;
+import com.kinglsey.movie_auth_service.dtos.AccountLoginPayload;
+import com.kinglsey.movie_auth_service.dtos.AccountRegisterDto;
+import com.kinglsey.movie_auth_service.dtos.UserPayload;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
