@@ -8,6 +8,7 @@ import com.kinglsey.movie_auth_service.dtos.AccountRegisterDto;
 import com.kinglsey.movie_auth_service.dtos.UserPayload;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,5 +41,27 @@ public class AuthService {
         }
         String token = jwtService.generateToken(user);
         return new AccountLoginDto(user.getUsername(), token);
+    }
+
+    public AccountLoginDto oauthSuccessHandler(OAuth2AuthenticationToken authentication){
+        String username = authentication.getPrincipal().getAttribute("name");
+        String email = authentication.getPrincipal().getAttribute("email");
+        String password = username+"-"+email;
+
+        var possibleUser = userRepository.findUsersByEmail(email);
+        Users user = possibleUser.map(mappedUser -> {
+            mappedUser.setEmail(email);
+            mappedUser.setUsername(username);
+            return mappedUser;
+        }).orElseGet(() -> {
+            Users newUser = new Users();
+            newUser.setEmail(email);
+            newUser.setUsername(username);
+            newUser.setPassword(password);
+            return newUser;
+        });
+        Users savedUser = userRepository.save(user);
+        String token = jwtService.generateToken(securityUserService.loadUserByUsername(savedUser.getEmail()));
+        return new AccountLoginDto(savedUser.getEmail(), token);
     }
 }
