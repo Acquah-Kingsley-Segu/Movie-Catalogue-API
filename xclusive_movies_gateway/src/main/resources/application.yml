@@ -1,0 +1,37 @@
+server:
+  port: 8890
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: xclusive_movies_gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ${AUTH_SERVICE_NAME}
+          uri: lb://${AUTH_SERVICE_NAME}
+          predicates:
+            - Path=/api/v1/movie-catalogue/auth/**
+        - id: "demo"
+          uri: lb://${AUTH_SERVICE_NAME}
+          predicates:
+            - Path=/dbUrl
+          filters:
+            - name: AuthenticationBeforeFilter
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8889/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /actuator
+  endpoint:
+    health:
+      show-details: always
+
