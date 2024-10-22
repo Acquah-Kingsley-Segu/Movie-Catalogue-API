@@ -1,0 +1,29 @@
+server:
+  port: 9093
+
+spring:
+  application:
+    name: xclusive-movie-info-service
+  datasource:
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8889/eureka/
+
+springdoc:
+  api-docs:
+    path: /api/v1/movie/catalogue/info/docs
+  swagger-ui:
+    path: /api/v1/movie/catalogue/info/swagger-ui.html
