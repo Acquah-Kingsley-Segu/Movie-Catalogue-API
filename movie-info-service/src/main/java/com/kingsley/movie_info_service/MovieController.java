@@ -16,21 +16,17 @@ public class MovieController {
     }
 
     @GetMapping("/movies")
-    public OttAdvancedSearchResponse homeMovies(){
-        return movieInfoService.getMovies(new AdvancedSearch());
+    public OttAdvancedSearchResponse homeMovies(@RequestParam(required = false) String start_year,
+                                                @RequestParam(required = false) String end_year,
+                                                @RequestParam(required = false) String min_imdb,
+                                                @RequestParam(required = false) String max_imdb,
+                                                @RequestParam(required = false) String genre,
+                                                @RequestParam(required = false) String language,
+                                                @RequestParam(required = false) String type,
+                                                @RequestParam(required = false) String sort,
+                                                @RequestParam(required = false) String page){
+        return movieInfoService.getMovies(new AdvancedSearch(start_year, end_year, min_imdb, max_imdb, genre, language, type, sort, page));
     }
-
-//    public OttAdvancedSearchResponse advancedSearch(@RequestParam(required = false) String start_year,
-//                                                @RequestParam(required = false) String end_year,
-//                                                @RequestParam(required = false) String min_imdb,
-//                                                @RequestParam(required = false) String max_imdb,
-//                                                @RequestParam(required = false) String genre,
-//                                                @RequestParam(required = false) String language,
-//                                                @RequestParam(required = false) String type,
-//                                                @RequestParam(required = false) String sort,
-//                                                @RequestParam(required = false) String page){
-//        return movieInfoService.getMovies(new AdvancedSearch(start_year, end_year, min_imdb, max_imdb, genre, language, type, sort, page));
-//    }
 
     @GetMapping("/user/{id}/movies")
     public List<MovieEntity> getUserMovies(@PathVariable String id){
