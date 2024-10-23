@@ -28,13 +28,13 @@ public class MovieController {
         return movieInfoService.getMovies(new AdvancedSearch(start_year, end_year, min_imdb, max_imdb, genre, language, type, sort, page));
     }
 
-    @GetMapping("/user/{id}/movies")
-    public List<MovieEntity> getUserMovies(@PathVariable String id){
-        return List.of(new MovieEntity("2847t2rsbua9fhxbvafydgqjn","DeadPool", "Marvel Animated Movie"), new MovieEntity("cbavhsvcjkwv.cv hcqyv ycvxb nzbcvc cx", "DeadPool 2", "Marvel Animated Movie"));
+    @GetMapping("/movies/genres")
+    public List<String> getMovieGenres(){
+        return movieInfoService.getMovieGenres("genre");
     }
 
-    @PostMapping("/user/{id}/movie/create")
-    public MovieDto createMovie(@PathVariable String id, @RequestBody MovieDto movieData){
-        return movieData;
+    @GetMapping("/movies/languages")
+    public List<String> getMovieLanguage(){
+        return movieInfoService.getMovieLanguages("language");
     }
 }
