@@ -1,6 +1,7 @@
 package com.kingsley.movie_info_service;
 
 import com.kingsley.movie_info_service.feign_clients.dto.OttAdvancedSearchResponse;
+import com.kingsley.movie_info_service.feign_clients.dto.TitleSearchDto;
 import com.kingsley.movie_info_service.feign_clients.ottdetails.params.AdvancedSearch;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,5 +37,10 @@ public class MovieController {
     @GetMapping("/movies/languages")
     public List<String> getMovieLanguage(){
         return movieInfoService.getMovieLanguages("language");
+    }
+
+    @GetMapping("/movies/search/{title}")
+    public TitleSearchDto searchMovies(@PathVariable String title){
+        return movieInfoService.searchMoviesByTitle(title);
     }
 }

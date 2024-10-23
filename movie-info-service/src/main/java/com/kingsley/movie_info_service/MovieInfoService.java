@@ -1,6 +1,7 @@
 package com.kingsley.movie_info_service;
 
 import com.kingsley.movie_info_service.feign_clients.dto.OttAdvancedSearchResponse;
+import com.kingsley.movie_info_service.feign_clients.dto.TitleSearchDto;
 import com.kingsley.movie_info_service.feign_clients.ottdetails.SearchApiCalls;
 import com.kingsley.movie_info_service.feign_clients.ottdetails.params.AdvancedSearch;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,9 @@ public class MovieInfoService {
 
     public List<String> getMovieLanguages(String language) {
         return searchApiCalls.getSearchParam(language);
+    }
+
+    public TitleSearchDto searchMoviesByTitle(String title) {
+        return searchApiCalls.searchMovieByTitle(title);
     }
 }

@@ -2,6 +2,7 @@ package com.kingsley.movie_info_service.feign_clients.ottdetails;
 
 import com.kingsley.movie_info_service.feign_clients.config.OttFeignConfig;
 import com.kingsley.movie_info_service.feign_clients.dto.OttAdvancedSearchResponse;
+import com.kingsley.movie_info_service.feign_clients.dto.TitleSearchDto;
 import com.kingsley.movie_info_service.feign_clients.ottdetails.params.AdvancedSearch;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.cloud.openfeign.SpringQueryMap;
@@ -16,4 +17,6 @@ public interface SearchApiCalls {
     OttAdvancedSearchResponse homePageMovies(@SpringQueryMap AdvancedSearch advancedSearch);
     @GetMapping(name = "get_possible_genre", path = "/getParams")
     List<String> getSearchParam(@RequestParam String param);
+    @GetMapping(name = "search_by_title", path = "/search")
+    TitleSearchDto searchMovieByTitle(@RequestParam String title);
 }
