@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
                                )
 )
 @RestController
-@RequestMapping("api/v1/movie-catalogue/auth")
+@RequestMapping("/api/v1/movie-catalogue/auth")
 public class AuthController {
     private final AuthService authService;
 
