@@ -13,6 +13,10 @@ spring:
           uri: lb://${AUTH_SERVICE_NAME}
           predicates:
             - Path=/api/v1/movie-catalogue/auth/**
+        - id: ${MOVIE_INFO_SERVICE_NAME}
+          uri: lb://${MOVIE_INFO_SERVICE_NAME}
+          predicates:
+            - Path=/api/v1/xclusive/movies/**
         - id: "demo"
           uri: lb://${AUTH_SERVICE_NAME}
           predicates:
